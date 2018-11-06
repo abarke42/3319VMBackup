@@ -1,0 +1,258 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+abarke42assign2db
+mysql
+performance_schema
+--------------
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE abarke42assign2db.products FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+--------------
+
+--------------
+SELECT * FROM products
+--------------
+
+productID	description	cost	quantity
+11	Bike	150.00	200
+12	Socks	2.00	100
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+INSERT INTO products(productID, description, cost, quantity) VALUES(66, "Elbow Pads", 14.25, 120)
+--------------
+
+--------------
+INSERT INTO products(productID, description, cost, quantity) VALUES(10, "Skates", 64.99, 89)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(99, "Hugh", "Grant", "Springfield", 16)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(22, "Courtney", "Cox", "New York", 25)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(66, "Rosie", "ODonnell", "Ottawa", 100)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(33, "David", "Letterman", "Bedrock", 100)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(11, "Regis", "Philbin", "Boston", 33)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(12, "Rosie", "Cox", "Ottawa", 50)
+--------------
+
+--------------
+INSERT INTO agents(agentID, firstName, lastName, city, commission) VALUES(42, "Alyssa", "Barker", "Brandon", 100)
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(21, "Homer", "Simpson", "Springfield", "686-8956")
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(31, "Sideshow", "Bob", "Springfield", "686-5555")
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(12, "Monty", "Burns", "Springfield", "789-0000")
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(15, "Fred", "Flintstone", "Bedrock", "777-2345")
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(13, "Super", "Man", "Kypto", "888-1234")
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(10, "Barney", "Rubble", "Bedrock", "777-1234")
+--------------
+
+--------------
+INSERT INTO customers(customerID, firstName, lastName, city, phoneNum) VALUES(14, "Peter", "Griffens", "Providence", "987-4567")
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(99, 21, 20)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(12, 21, 14)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(66, 21, 10)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(99, 31, 1)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(12, 31, 2)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(78, 31, 4)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(66, 31, 2)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(66, 15, 2)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(78, 15, 2)
+--------------
+
+--------------
+INSERT INTO purchases(productID, customerID, quantity) VALUES(66, 14, 19)
+--------------
+
+--------------
+UPDATE customers SET agent=99 WHERE customerID=21 OR customerID=12 OR customerID=14
+--------------
+
+--------------
+UPDATE customers SET agent=33 WHERE customerID=13
+--------------
+
+--------------
+UPDATE customers SET agent=11 WHERE customerID=10 OR customerID=15
+--------------
+
+--------------
+UPDATE customers SET agent=66 WHERE customerID=31
+--------------
+
+--------------
+SELECT * FROM products
+--------------
+
+productID	description	cost	quantity
+10	Skates	64.99	89
+11	Bike	150.00	200
+12	Socks	2.00	100
+66	Elbow Pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+SELECT * FROM agents
+--------------
+
+agentID	firstName	lastName	city	commission
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+22	Courtney	Cox	New York	25
+33	David	Letterman	Bedrock	100
+42	Alyssa	Barker	Brandon	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT * FROM customers
+--------------
+
+customerID	firstName	lastName	city	phoneNum	agent
+10	Barney	Rubble	Bedrock	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Super	Man	Kypto	888-1234	33
+14	Peter	Griffens	Providence	987-4567	99
+15	Fred	Flintstone	Bedrock	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM purchases
+--------------
+
+productID	customerID	quantity
+12	21	14
+12	31	2
+66	14	19
+66	15	2
+66	21	10
+66	31	2
+78	15	2
+78	31	4
+99	21	20
+99	31	1
+--------------
+UPDATE customers SET firstName="Wonder", lastName="Woman" WHERE firstName="Super" AND lastName="Man"
+--------------
+
+--------------
+UPDATE purchases SET quantity=5 WHERE customerID IN (SELECT customerID FROM customers WHERE firstName="Sideshow")
+--------------
+
+--------------
+UPDATE customers SET city="Boston" WHERE agent IN (SELECT agentID FROM agents WHERE firstName="Regis")
+--------------
+
+--------------
+SELECT * FROM products
+--------------
+
+productID	description	cost	quantity
+10	Skates	64.99	89
+11	Bike	150.00	200
+12	Socks	2.00	100
+66	Elbow Pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+SELECT * FROM agents
+--------------
+
+agentID	firstName	lastName	city	commission
+11	Regis	Philbin	Boston	33
+12	Rosie	Cox	Ottawa	50
+22	Courtney	Cox	New York	25
+33	David	Letterman	Bedrock	100
+42	Alyssa	Barker	Brandon	100
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT * FROM customers
+--------------
+
+customerID	firstName	lastName	city	phoneNum	agent
+10	Barney	Rubble	Boston	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Wonder	Woman	Kypto	888-1234	33
+14	Peter	Griffens	Providence	987-4567	99
+15	Fred	Flintstone	Boston	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM purchases
+--------------
+
+productID	customerID	quantity
+12	21	14
+12	31	5
+66	14	19
+66	15	2
+66	21	10
+66	31	5
+78	15	2
+78	31	5
+99	21	20
+99	31	5

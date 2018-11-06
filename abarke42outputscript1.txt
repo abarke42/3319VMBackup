@@ -1,0 +1,66 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS abarke42assign2db
+--------------
+
+--------------
+CREATE DATABASE abarke42assign2db
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON abarke42assign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE products (productID CHAR(2) NOT NULL, description VARCHAR(20), cost DECIMAL(8,2), quantity INT(6) NOT NULL, PRIMARY KEY (productID))
+--------------
+
+--------------
+CREATE TABLE agents (agentID CHAR(2) NOT NULL, firstName VARCHAR(30), lastName VARCHAR(30), city VARCHAR(15), commission INT(3), PRIMARY KEY (agentID))
+--------------
+
+--------------
+CREATE TABLE customers (customerID CHAR(2) NOT NULL, firstName VARCHAR(30), lastName VARCHAR(30), city VARCHAR(15), phoneNum VARCHAR(15), agent CHAR(2), PRIMARY KEY (customerID), FOREIGN KEY (agent) REFERENCES agents(agentID) ON DELETE CASCADE)
+--------------
+
+--------------
+CREATE TABLE purchases (productID CHAR(2) NOT NULL, customerID CHAR(2) NOT NULL, quantity INT(6), PRIMARY KEY (productID, customerID), FOREIGN KEY (productID) REFERENCES products(productID), FOREIGN KEY (customerID) REFERENCES customers(customerID))
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+Tables_in_abarke42assign2db
+agents
+customers
+products
+purchases
